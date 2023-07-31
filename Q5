@@ -1,0 +1,19 @@
+def nth_ugly_number(n):
+    ugly_numbers = [1]  # The first ugly number is 1
+    i2 = i3 = i5 = 0  # Pointers to keep track of the indices of ugly numbers to multiply by 2, 3, and 5
+
+    while len(ugly_numbers) < n:
+        next_ugly = min(ugly_numbers[i2] * 2, ugly_numbers[i3] * 3, ugly_numbers[i5] * 5)
+        ugly_numbers.append(next_ugly)
+
+        if next_ugly == ugly_numbers[i2] * 2:
+            i2 += 1
+        if next_ugly == ugly_numbers[i3] * 3:
+            i3 += 1
+        if next_ugly == ugly_numbers[i5] * 5:
+            i5 += 1
+
+    return ugly_numbers[-1]
+
+print(nth_ugly_number(10))  # Output: 12
+print(nth_ugly_number(1))   # Output: 1

@@ -1,0 +1,22 @@
+def longest_substring_length(s):
+    char_index_map = {}  # Store the index of each character seen in the string
+    max_length = 0
+    start = 0  # Start of the current substring
+
+    for end in range(len(s)):
+        if s[end] in char_index_map and char_index_map[s[end]] >= start:
+            # If the character is already seen in the current substring, update the start index
+            start = char_index_map[s[end]] + 1
+
+        # Update the index of the character in the map
+        char_index_map[s[end]] = end
+
+        # Calculate the length of the current substring and update max_length if needed
+        current_length = end - start + 1
+        max_length = max(max_length, current_length)
+
+    return max_length
+
+print(longest_substring_length("abcabcbb"))  # Output: 3
+print(longest_substring_length("bbbbb"))     # Output: 1
+print(longest_substring_length("pwwkew"))    # Output: 3

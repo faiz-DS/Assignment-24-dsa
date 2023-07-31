@@ -1,0 +1,15 @@
+def top_k_frequent_words(words, k):
+    word_freq = {}  # Dictionary to store word frequency
+    for word in words:
+        word_freq[word] = word_freq.get(word, 0) + 1
+
+    # Sort the words based on their frequency and lexicographical order
+    sorted_words = sorted(word_freq.keys(), key=lambda x: (-word_freq[x], x))
+
+    return sorted_words[:k]
+
+print(top_k_frequent_words(["i", "love", "leetcode", "i", "love", "coding"], 2))
+# Output: ["i", "love"]
+
+print(top_k_frequent_words(["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], 4))
+# Output: ["the", "is", "sunny", "day"]
